@@ -1,0 +1,45 @@
+{% extends "AppQatar/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1><p style="color: brown;"> Bienvenido a la wiki del Mundial de Qatar 2022</p></h1>
+  
+
+    <h3>Buscá un país para ver cuántas copas tiene:</h3>
+
+    <form action="/AppQatar/buscar/" method="GET">
+
+        <input type="text" name="selecc" id="selecc">
+
+        <input type="submit" value="Buscar">
+
+
+
+
+    </form>
+
+    {% if copas %}
+
+    <p>Estamos buscando a: {{selecc}}</p>
+
+    <ul>
+	{% for cop in copas %}
+		
+		<li> Ha ganado {{cop.cantCopas}} copa(s) del mundo! </li>
+        {% if cop.cantCopas != 0 %}
+        <li> La última ha sido en el año {{cop.ultimaCopa}}. </li>
+        {% endif %}
+        {% endfor %}
+
+    </ul>
+
+    {% endif %}
+    
+
+
+
+{% endblock %}
